@@ -4,6 +4,7 @@
 /* Procedure printToken prints a token 
  * and its lexeme to the listing file
  */
+
 void printToken(TokenType token, const char* tokenString)
 {
 	switch (token)
