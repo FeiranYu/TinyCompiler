@@ -1,7 +1,7 @@
 #pragma once
 #ifndef _GLOBALS_H_
 #define _GLOBALS_H_
-
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>

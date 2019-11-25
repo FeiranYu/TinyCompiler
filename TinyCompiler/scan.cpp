@@ -28,7 +28,7 @@ static char getNextChar(void)
 		lineno++;
 		if (fgets(lineBuf, BUFLEN - 1, source))
 		{
-			if (EchoSource)fprintf(listing, "%4d:%s", lineno, lineBuf);
+			if (EchoSource)fprintf(listing, "%4d: %s", lineno, lineBuf);
 			bufsize = strlen(lineBuf);
 			linepos = 0;
 			return lineBuf[linepos++];
@@ -97,7 +97,7 @@ TokenType getToken(void)
 				state = INASSIGN;
 			else if ((c == ' ') || (c == '\t') || (c == '\n'))
 				save = FALSE;
-			else if (c == '(')
+			else if (c == '{')
 			{
 				save = FALSE;
 				state = INCOMMENT;
@@ -189,19 +189,19 @@ TokenType getToken(void)
 			break;
 		}
 	
-	if ((save) && (tokenStringIndex <= MAXTOKENLEN))
-		tokenString[tokenStringIndex++] = c;
-	if (state == DONE)
-	{
-		tokenString[tokenStringIndex] = '\0';
-		if (currentToken == ID)
-			currentToken = reservedLookUp(tokenString);
+		if ((save) && (tokenStringIndex <= MAXTOKENLEN))
+			tokenString[tokenStringIndex++] = c;
+		if (state == DONE)
+		{
+			tokenString[tokenStringIndex] = '\0';
+			if (currentToken == ID)
+				currentToken = reservedLookUp(tokenString);
+		}
 	}
-  }
-  if (TraceScan) {
-	  fprintf(listing, "\t%d", lineno);
-	  printToken(currentToken, tokenString);
-  }
+	if (TraceScan) {
+		fprintf(listing, "\t%d: ", lineno);
+		printToken(currentToken, tokenString);
+	}
   return currentToken;
 
 }

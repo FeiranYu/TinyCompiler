@@ -12,7 +12,8 @@ void printToken(TokenType token, const char* tokenString)
 	case IF:
 	case THEN:
 	case ELSE:
-	case  END:
+	case END:
+	case REPEAT:
 	case UNTIL:
 	case READ:
 	case WRITE:
@@ -79,6 +80,7 @@ TreeNode* newExpNode(ExpKind kind)
 		t->lineno = lineno;
 		t->type = Void;
 	}
+	return t;
 }
 
 
@@ -155,10 +157,10 @@ void printTree(TreeNode* tree)
 				printToken(tree->attr.op, "\0");
 				break;
 			case ConstK:
-				fprintf(listing, "const:%d\n", tree->attr.val);
+				fprintf(listing, "const: %d\n", tree->attr.val);
 				break;
 			case IdK:
-				fprintf(listing, "Id:%s\n", tree->attr.name);
+				fprintf(listing, "Id: %s\n", tree->attr.name);
 				break;
 			default:
 				fprintf(listing, "Unknown ExpNode kind\n");
