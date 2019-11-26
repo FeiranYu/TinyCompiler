@@ -1,10 +1,10 @@
 #include"globals.h"
 
 /* set NO_PARSE to TRUE to get a scanner-only compiler */
-#define NO_PARSE TRUE
+#define NO_PARSE FALSE
 
 /* set NO_ANALYZE to TRUE to get a parser-only complier */
-#define NO_ANALYZE FALSE
+#define NO_ANALYZE TRUE
 
 /* set NO_CODE to TRUE to get a compiler that does not generate code */
 #define NO_CODE FALSE
@@ -13,6 +13,8 @@
 #if NO_PARSE
 #include "scan.h"
 #else 
+#include"parse.h"
+
 #endif
 
 /* allocate global variable */
@@ -34,6 +36,7 @@ int main(int argc, char* argv[])
 {
 	TreeNode* syntaxTree;
 	char pgm[20];	/*source code file name */
+	/*
 	if (argc != 2)
 	{
 		fprintf(stderr, "usage: %s <filename>\n", argv[0]);
@@ -42,6 +45,8 @@ int main(int argc, char* argv[])
 	strcpy(pgm, argv[1]);
 	if (strchr(pgm, '.') == NULL)
 		strcat(pgm, ".tny");
+	*/
+	strcpy(pgm, "sample.tny");
 	source = fopen(pgm, "r");
 	if (source == NULL)
 	{
@@ -52,5 +57,10 @@ int main(int argc, char* argv[])
 #if NO_PARSE
 	while (getToken() != ENDFILE);
 #endif
+	syntaxTree = parse();
+	if(TraceParse) {
+		fprintf(listing, "\nSyntax tree:\n");
+		printTree(syntaxTree);
+	}
 	return 0;
 }

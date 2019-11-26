@@ -26,16 +26,29 @@ static char getNextChar(void)
 	if (!(linepos < bufsize))
 	{
 		lineno++;
+
 		if (fgets(lineBuf, BUFLEN - 1, source))
 		{
-			if (EchoSource)fprintf(listing, "%4d: %s", lineno, lineBuf);
+			
 			bufsize = strlen(lineBuf);
 			linepos = 0;
+			if (EchoSource)
+			{
+				
+				if (lineBuf[bufsize - 1] != '\n')
+				{
+					bufsize++;
+					lineBuf[bufsize - 1] = '\n';
+					lineBuf[bufsize] = 0;
+				}
+				fprintf(listing, "%4d: %s", lineno, lineBuf);
+			}
 			return lineBuf[linepos++];
 		}
 		else return EOF;
 	}
 	else return lineBuf[linepos++];
+
 }
 
 /* ungetNextChar backracks one character 
