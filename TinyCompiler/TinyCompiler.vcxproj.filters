@@ -27,6 +27,12 @@
     <ClInclude Include="parse.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="analyze.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="symtab.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="util.cpp">
@@ -39,6 +45,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="parse.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="analyze.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="symtab.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

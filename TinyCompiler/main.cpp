@@ -4,7 +4,7 @@
 #define NO_PARSE FALSE
 
 /* set NO_ANALYZE to TRUE to get a parser-only complier */
-#define NO_ANALYZE TRUE
+#define NO_ANALYZE FALSE
 
 /* set NO_CODE to TRUE to get a compiler that does not generate code */
 #define NO_CODE FALSE
@@ -14,7 +14,9 @@
 #include "scan.h"
 #else 
 #include"parse.h"
-
+#if !NO_ANALYZE
+#include"analyze.h"
+#endif
 #endif
 
 /* allocate global variable */
@@ -62,5 +64,15 @@ int main(int argc, char* argv[])
 		fprintf(listing, "\nSyntax tree:\n");
 		printTree(syntaxTree);
 	}
+#if !NO_ANALYZE
+	if (!Error)
+	{
+		fprintf(listing, "\nBuliding Symbol Table...\n");
+		buildSymtab(syntaxTree);
+		fprintf(listing, "\nChecking Types...\n");
+		typeCheck(syntaxTree);
+		fprintf(listing, "\nType Checking Finished\n");
+	}
+#endif
 	return 0;
 }

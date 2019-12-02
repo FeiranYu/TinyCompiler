@@ -123,15 +123,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="analyze.h" />
     <ClInclude Include="globals.h" />
     <ClInclude Include="parse.h" />
     <ClInclude Include="scan.h" />
+    <ClInclude Include="symtab.h" />
     <ClInclude Include="util.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="analyze.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="parse.cpp" />
     <ClCompile Include="scan.cpp" />
+    <ClCompile Include="symtab.cpp" />
     <ClCompile Include="util.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
