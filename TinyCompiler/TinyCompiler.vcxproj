@@ -124,6 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="analyze.h" />
+    <ClInclude Include="cgen.h" />
     <ClInclude Include="code.h" />
     <ClInclude Include="globals.h" />
     <ClInclude Include="parse.h" />
@@ -133,6 +134,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="analyze.cpp" />
+    <ClCompile Include="cgen.cpp" />
+    <ClCompile Include="code.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="parse.cpp" />
     <ClCompile Include="scan.cpp" />

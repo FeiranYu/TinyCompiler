@@ -30,7 +30,7 @@
  * s = 1st source register
  * c = a comment to be printed if TraceCode is True
  */
-void emitRO(char* op, int r, int s, int t, char* c);
+void emitRO(const char* op, int r, int s, int t, const char* c);
 
 /* Procedure emitRM emits a register-to-memory
  * TM instruction
@@ -40,7 +40,7 @@ void emitRO(char* op, int r, int s, int t, char* c);
  * s = the base register
  * c = a comment to be printed if TraceCode is TRUE
  */
-void emitRM(char* op, int r, int d, int s, char* c);
+void emitRM(const char* op, int r, int d, int s, const char* c);
 
 /* Function emitSkip skips "howMany" code
  * locations for later backpatch. It also
@@ -52,4 +52,26 @@ int emitSkip(int howMany);
  * loc = a previously skipped location
  */
 void emitBackup(int loc);
+ 
+/* Procedure emitRestore restores the current 
+ * code position to the highest previously
+ * unemitted position
+ */
+void emitRestore(void);
 
+/* Procedure emitComment prints a comment line 
+ * with comment c in the code file
+ */
+void emitComment(const char*);
+
+/* Procedure emitRM_Abs converts an absolute reference
+ * to a pc-relative when emitting a 
+ * register-to-memory TM instruction
+ * op = the opcode 
+ * r = target register
+ * a = the absolute location in memory
+ * c = a comment to be printed if TraceCode is TRUE
+ */
+void emitRM_Abs(const char* op, int r, int a, const char* c);
+
+#endif

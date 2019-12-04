@@ -36,6 +36,9 @@
     <ClInclude Include="code.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="cgen.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="util.cpp">
@@ -54,6 +57,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="symtab.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="code.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cgen.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

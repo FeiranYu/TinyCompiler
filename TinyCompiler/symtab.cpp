@@ -73,7 +73,7 @@ void st_insert(char* name, int lineno, int loc)
 		hashTable[h] = l;
 	}
 	else
-	{
+	{	//添加被使用的源代码行数
 		LineList t = l->lines;
 		while (t->next != NULL)t = t->next;
 		t->next = (LineList)malloc(sizeof(struct LineListRec));
