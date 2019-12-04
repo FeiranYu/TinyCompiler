@@ -33,6 +33,9 @@
     <ClInclude Include="symtab.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="code.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="util.cpp">

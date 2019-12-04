@@ -124,6 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="analyze.h" />
+    <ClInclude Include="code.h" />
     <ClInclude Include="globals.h" />
     <ClInclude Include="parse.h" />
     <ClInclude Include="scan.h" />
