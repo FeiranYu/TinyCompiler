@@ -11,11 +11,15 @@
 
 #include"util.h"
 #if NO_PARSE
-#include "scan.h"
+
 #else 
+#include "scan.h"
 #include"parse.h"
 #if !NO_ANALYZE
 #include"analyze.h"
+#if !NO_CODE
+#include"cgen.h"
+#endif
 #endif
 #endif
 
@@ -58,7 +62,7 @@ int main(int argc, char* argv[])
 	listing = stdout;	/*send listing to screen */
 #if NO_PARSE
 	while (getToken() != ENDFILE);
-#endif
+#else
 	syntaxTree = parse();
 	if(TraceParse) {
 		fprintf(listing, "\nSyntax tree:\n");
@@ -73,6 +77,25 @@ int main(int argc, char* argv[])
 		typeCheck(syntaxTree);
 		fprintf(listing, "\nType Checking Finished\n");
 	}
+#if !NO_CODE
+	if (!Error)
+	{
+		char* codefile;
+		int fnlen = strcspn(pgm, ".");
+		codefile = (char*)calloc(fnlen + 4, sizeof(char));
+		strncpy(codefile, pgm, fnlen);
+		strcat(codefile, ".tm");
+		code = fopen(codefile, "w");
+		if (code == NULL)
+		{
+			printf("Unable to open %s\n", codefile);
+			exit(1);
+		}
+		codeGen(syntaxTree, codefile);
+		fclose(code);
+	}
+#endif
+#endif
 #endif
 	return 0;
 }
